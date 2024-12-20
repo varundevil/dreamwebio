@@ -1,0 +1,785 @@
+/* style.css */
+/* Global aurora effect */
+body {
+    background-color: #ffffff;
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    position: relative; /* Allow scrolling */
+}
+
+/* Full-screen aurora */
+.aurora {
+    position: fixed; /* Use fixed positioning to keep it in place */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Keep it behind all content */
+    background: radial-gradient(circle, rgba(0, 0, 0, 0.8), #000); /* Dark background */
+}
+
+/* Keyframes for the aurora effect movement */
+@keyframes auroraEffect {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+    50% {
+        transform: translate(-30%, -30%) scale(1.2);
+    }
+    100% {
+        transform: translate(-10%, -10%) scale(1);
+    }
+}
+
+/* Pseudo-elements for aurora effect */
+.aurora::before,
+.aurora::after {
+    content: '';
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(0, 255, 255, 0.2), rgba(0, 0, 255, 0.1) 30%, transparent 60%);
+    animation: auroraEffect 10s infinite alternate;
+    transform: rotate(30deg);
+    opacity: 0.6; /* Subtle transparency */
+}
+
+.aurora::after {
+    background: radial-gradient(circle, rgba(255, 0, 255, 0.2), rgba(0, 255, 0, 0.1) 30%, transparent 60%);
+    animation: auroraEffect 40s infinite alternate-reverse;
+    transform: rotate(-45deg);
+    opacity: 0.5; /* Subtle transparency */
+}
+
+
+header {
+    background-color: transparent;
+    padding: 10px;
+    position: relative;
+    top: 0;
+    z-index: 100;
+}
+
+/* Navbar Styling */
+/* General Navbar Styling (Retains existing styles) */
+/* General Navbar Styling (Retains existing styles) */
+/* General Navbar Styling */
+/* General Navbar Styling */
+/* Dropdown Animation */
+@keyframes dropdown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes dropup {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+}
+
+/* General Navbar Styling */
+
+/* Make the navbar background transparent */
+nav {
+    padding: 10px 20px;
+    background-color: transparent; /* Make navbar background transparent */
+    position: relative;
+    z-index: 10; /* Ensure the navbar stays on top of other content */
+}
+
+/* Container for navigation */
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Logo styling */
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo-icon {
+    width: 40px;
+    height: auto;
+    margin-right: 10px;
+    border-radius: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.logo-icon:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 5px rgba(135, 206, 250, 0.8),
+        0 0 10px rgba(135, 206, 250, 0.6),
+        0 0 15px rgba(135, 206, 250, 0.4);
+}
+
+.logo-text {
+    color: white;
+    font-size: 1.5em;
+    font-family: 'Arial', sans-serif;
+    margin-left: 20px;
+    position: relative;
+    transition: color 0.3s ease, transform 0.3s ease, text-shadow 0.3s ease;
+}
+
+.logo-text:hover {
+    color: rgba(135, 206, 250, 0.9);
+    text-shadow: 0 0 5px rgba(135, 206, 250, 0.8),
+        0 0 10px rgba(135, 206, 250, 0.6),
+        0 0 15px rgba(135, 206, 250, 0.4);
+    transform: scale(1.1);
+}
+
+/* Nav Items Styling */
+.nav-items {
+    list-style: none;
+    display: flex; /* Display flex by default for larger screens */
+    flex-direction: row; /* Horizontal layout for larger screens */
+    margin: 0;
+    padding: 0;
+    gap: 20px;
+}
+
+.nav-items li {
+    margin: 0; /* Remove extra margin */
+}
+
+.nav-items a {
+    color: white;
+    font-size: 1.2em;
+    text-decoration: none;
+    transition: transform 0.3s ease, color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.nav-items a:hover {
+    color: rgba(135, 206, 250, 0.9);
+    text-shadow: 0 0 5px rgba(135, 206, 250, 0.8),
+        0 0 10px rgba(135, 206, 250, 0.6),
+        0 0 15px rgba(135, 206, 250, 0.4);
+    transform: scale(1.1);
+}
+
+/* Hamburger Menu */
+.menu-toggle {
+    display: none; /* Hidden by default */
+    flex-direction: column;
+    justify-content: space-around;
+    height: 24px;
+    width: 30px;
+    cursor: pointer;
+}
+
+.menu-toggle .bar {
+    height: 3px;
+    width: 100%;
+    background-color: white;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: flex; /* Show hamburger menu */
+    }
+
+    .nav-items {
+        display: none; /* Hide navigation items by default on small screens */
+        flex-direction: column;
+        background-color: transparent; /* Transparent background for the dropdown */
+        position: absolute;
+        top: 60px;
+        right: 20px;
+        width: 200px;
+        border-radius: 8px;
+        padding: 10px;
+        animation-duration: 0.5s;
+        animation-fill-mode: forwards;
+    }
+
+    .nav-items.active {
+        display: flex; /* Show nav items when active */
+        animation: dropdown 0.5s ease forwards;
+    }
+
+    .nav-items:not(.active) {
+        animation: dropup 0.5s ease forwards;
+    }
+}
+
+/* Dropdown Animation */
+@keyframes dropdown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes dropup {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+}
+/*  */
+/*  */
+/*  */
+/*  */
+/*  */
+/*  */
+/*  */
+#home {
+    position: relative;
+    overflow: hidden;
+    min-height: 100vh; /* Full height of the viewport */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white; /* Set text color to white */
+    text-align: center; /* Center text horizontally */
+}
+
+#home::before {
+    content: '';
+    position: absolute;
+    top: 30px;
+    left: 0;
+    width: 100%;
+    height: 70%;
+    background-image: url('images/homeimg.png'); /* Update the image URL */
+    background-size: contain; /* Keep the image within bounds */
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0.25;
+    z-index: 1;
+    max-width: 100%; /* Prevent the image from becoming too large */
+    max-height: 70%; /* Restrict the height so it doesn't stretch too much */
+    transition: all 0.5s ease-in-out; /* Smooth transition for background size */
+}
+
+/* On larger screens, increase the background image size by 30px */
+@media (min-width: 1024px) {
+    #home::before {
+        background-size: calc(60%); /* Increase the background size by 30px */
+    }
+}
+
+.hero-text {
+    position: relative;
+    font-size: 3.5em;
+    font-weight: bold;
+    z-index: 2;
+    margin-bottom: 200px; /* Space between text and button */
+    transition: text-shadow 0.5s ease;
+}
+
+/* Add hover effect for the hero text */
+.hero-text:hover {
+    color: rgb(188, 229, 255);
+    text-shadow: 0 0 5px rgb(100, 229, 255), 0 0 10px rgb(0, 247, 255), 0 0 15px rgb(0, 213, 255), 0 0 20px rgb(55, 215, 255);
+}
+
+/* Button Styling */
+.button {
+    margin-bottom: 120px;
+    cursor: pointer;
+    padding: .8em;
+    font-size: 1em;
+    width: auto; /* Make the button width adjust based on content */
+    max-width: 250px; /* Set a max-width for the button */
+    aspect-ratio: 1/0.25;
+    color: white;
+    background: #212121;
+    background-size: cover;
+    background-blend-mode: overlay;
+    border-radius: 0.5em;
+    outline: 0.1em solid #353535;
+    border: 0;
+    box-shadow: 0 0 1em 1em rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+    position: absolute;
+    z-index: 2;
+    bottom: 50px; /* Space from the bottom */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    transition: bottom 0.5s ease-in-out; /* Smooth transition for button position */
+}
+
+/* Hover effect for button */
+.button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 1em 0.45em rgba(0, 0, 0, 0.1);
+    background: linear-gradient(45deg, #212121, #252525);
+    background: radial-gradient(
+        circle at bottom,
+        rgba(50, 100, 180, 0.5) 10%,
+        #212121 70%
+    );
+    outline: 0;
+}
+
+.icon {
+    fill: white;
+    width: 1.5em;
+    margin-right: .5em;
+    aspect-ratio: 1;
+    transform: translate(-35%, 10%);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hero-text {
+        padding-top: 10px;
+        font-size:2em; /* Adjust font size for tablets and smaller screens */
+    }
+
+    .button {
+        width: 80%; /* Button width now takes up 80% of the screen */
+        max-width: 150px; /* Limit the maximum size for better proportion */
+        bottom: 80px; /* Move button 40px up */
+        font-size: 0.9em;
+    }
+
+    .icon {
+        width: 1.2em;
+        transform: translate(-40%, 10%);
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-text {
+        font-size: 2em; /* Further reduce font size for mobile */
+        margin-bottom: 20px; /* Reduce margin between text and button */
+    }
+
+    .button {
+        width: 90%; /* Button width now takes up 90% of the screen */
+        max-width: 200px; /* Limit the button size for small screens */
+        bottom: 10px; /* Move button 40px up */
+        font-size: 1em;
+    }
+
+    .icon {
+        width: 1.2em;
+        transform: translate(-40%, 10%);
+    }
+}
+
+/* On large screens, adjust button position to come up 100px */
+@media (min-width: 1024px) {
+    .button {
+        bottom: 150px; /* Move button 100px up */
+    }
+}
+/*  */
+/*  */
+/*  */
+/*  */
+/*  */
+/*  */
+/*  */
+#about {
+    padding: 40px 0;
+    background-color:transparent;
+    text-align: center; /* Center-align the content */
+}
+
+#about h1 {
+    color: white;
+    font-size: 3em;
+    font-family: 'Arial', sans-serif;
+    margin-bottom: 20px;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+#about h1:hover {
+    color: rgb(100, 196, 255);
+}
+
+.slider-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px; /* Adjust gap between slides */
+}
+
+.slide {
+    width: calc(33.33% - 20px); /* 3 slides per row on larger screens */
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    position: relative;
+    color: white;
+    overflow: hidden;
+    background-color: rgba(255, 255, 255, 0.1); /* Subtle background for fallback */
+}
+
+.slide::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.15; /* Dim the background for text readability */
+    z-index: 1;
+}
+
+/* Specific background images for each slide */
+.slide:nth-child(1)::before {
+    background-image: url('/images/lloo.png');
+}
+
+.slide:nth-child(2)::before {
+    background-image: url('/images/4ppl.jpeg');
+}
+
+.slide:nth-child(3)::before {
+    background-image: url('/images/dollor.jpeg');
+}
+
+.slide:nth-child(4)::before {
+    background-image: url('/images/clock.jpeg');
+}
+
+/* Hover effect for slides */
+.slide:hover {
+    box-shadow: 0 0 20px rgba(0, 157, 255, 0.8), 0 0 30px rgba(37, 172, 255, 0.7);
+    transform: scale(1.05);
+}
+
+/* Responsive Styles */
+@media only screen and (max-width: 1024px) {
+    .slide {
+        width: calc(50% - 20px); /* 2 slides per row on medium screens */
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .slide {
+        width: calc(50% - 10px); /* Adjust for smaller gaps */
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .slide {
+        width: 100%; /* Full width for small screens */
+        margin-bottom: 20px; /* Add spacing between slides */
+    }
+}
+
+#about h1 {
+    padding-bottom: 30px;
+    font-size: 3em;
+}
+
+@media only screen and (max-width: 480px) {
+    #about h1 {
+        font-size: 2em; /* Smaller font size for small screens */
+    }
+}
+/*  */
+/*  */
+/*  */
+/*  */
+/*  */
+/*  */
+#services {
+    padding: 40px 0;
+    background-color:transparent;
+    text-align: center; /* Center-align the content */
+}
+
+#services h1 {
+    color: white;
+    font-size: 3em;
+    font-family: 'Arial', sans-serif;
+    margin-bottom: 20px;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+#services h1:hover {
+    color: rgb(100, 196, 255);
+}
+
+.services-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+.card {
+    width: calc(25% - 20px); /* 4 cards per row on large screens */
+    height: auto;
+    background: #f5f5f5;
+    padding: 15px;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: all 0.3s;
+    position: relative;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.card-image {
+    width: 100%;
+    height: 170px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.card-image img {
+    width: 100%;
+    height: auto;
+    transition: all 0.3s;
+    border-radius: 10px;
+}
+
+.content {
+    text-align: center;
+}
+
+.title {
+    font-size: 1em;
+    margin-top: 10px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: #000000;
+}
+
+.card-btn {
+    position: absolute;
+    bottom: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70%;
+    height: 40px;
+    background-color: rgb(24, 24, 24);
+    border: none;
+    border-radius: 20px;
+    color: white;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+    opacity: 0;
+}
+
+.card:hover .card-btn {
+    bottom: 20px;
+    opacity: 1;
+}
+
+.card:hover .card-image {
+    transform: scale(1.1); /* Zoom in on hover */
+}
+
+.card:hover {
+    background-color: white;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.card-btn:hover {
+    background-color: rgb(255, 0, 144);
+    color: rgb(35, 35, 35);
+}
+
+/* Responsive Styles */
+@media only screen and (max-width: 1200px) {
+    .card {
+        width: calc(33.33% - 20px); /* 3 cards per row on medium screens */
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .card {
+        width: calc(50% - 20px); /* 2 cards per row on tablets */
+    }
+
+    .title {
+        font-size: 0.9em;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .card {
+        width: 100%; /* Full-width cards on small screens */
+    }
+
+    .card-btn {
+        width: 80%; /* Wider buttons on small screens */
+    }
+
+    .title {
+        font-size: 0.8em;
+    }
+
+    #services h1 {
+        font-size: 2em; /* Adjust header size for small screens */
+    }
+}
+/*  */
+/*  */
+/*  */
+/*  */
+/*  */
+#contact h1 {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 3em;
+    transition: color 0.3s ease-in-out; /* Add transition effect */
+}
+
+#contact h1:hover {
+    color: rgb(100, 196, 255); /* Change color on hover */
+}
+
+#contact {
+    padding: 40px 20px;
+    background-color: transparent;
+    color: white;
+    text-align: center; /* Center text in the contact section */
+    margin-left: 10%; /* Add left margin */
+    margin-right: 10%; /* Optional: Add right margin for symmetry */
+}
+
+.contact-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center items horizontally */
+    gap: 20px; /* Space between contact items */
+}
+
+.contact-item {
+    display: flex;
+    align-items: center; /* Center items vertically */
+    justify-content: center; /* Center items horizontally */
+    width: 100%; /* Make each item take full width */
+}
+
+.contact-link {
+    color: white; /* Text color */
+    text-decoration: none; /* Remove underline */
+    font-size: 1.2em; /* Font size */
+    transition: color 0.3s ease; /* Smooth transition for hover effect */
+    display: flex; /* Use flexbox for alignment */
+    align-items: center; /* Center items vertically */
+}
+
+.contact-icon {
+    width: 40px; /* Set a uniform icon size */
+    height: 40px; /* Set a uniform icon size */
+    margin-right: 10px; /* Space between icon and text */
+}
+
+.contact-info {
+    color: rgb(255, 255, 255); /* Text color for contact info */
+    font-size: 1.2em; /* Font size */
+    transition: color 0.3s ease, transform 0.3s ease; /* Smooth transition for hover effect */
+    text-align: center; /* Center text */
+}
+.con-link {
+    display: flex; /* Make it a flex container */
+    align-items: center; /* Align items vertically */
+    justify-content: center; /* Align items horizontally */
+    color: white; /* Text color */
+    text-decoration: none; /* Remove underline */
+    font-size: 1.3em; /* Font size */
+    transition: color 0.3s ease, transform 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.con-link img { /* Style the icon */
+    margin-right: 10px; /* Adjust margin as needed */
+}
+.contact-link {
+    color: white; /* Text color */
+    text-decoration: none; /* Remove underline */
+    font-size: 1em; /* Font size */
+    transition: color 0.3s ease, transform 0.3s ease; /* Smooth transition for hover effect */
+}
+
+
+
+
+footer {
+    text-align: center;
+}
+
+.footer-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.footer-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer-logo {
+    width: 70px;
+    margin-right: 10px;
+}
+
+.footer-center p {
+    color: white;
+    font-size: 1em;
+}
+
+
+/* Responsive design */
+@media only screen and (max-width: 768px) {
+    .card {
+        width: calc(33.33% - 20px); /* Adjust for 3 cards in a row on medium screens */
+    }
+}
+
+
+@media only screen and (max-width: 480px) {
+    .card {
+        width: 100%; /* Full width for mobile */
+    }
+}
